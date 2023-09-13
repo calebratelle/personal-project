@@ -17,11 +17,12 @@ User.init(
             primaryKey: true,
             autoIncrement: true
         },
-        userName: {
+        username: {
             type: DataTypes.STRING
         },
-        password: {
-            type: DataTypes.STRING
+        hashedPass: {
+            type: DataTypes.STRING(500),
+            allowNull: false
         },
         isAdmin: {
             type: DataTypes.BOOLEAN,
@@ -79,8 +80,8 @@ Journal.init(
 }
 )
 
-class Lesson_Part extends Model {}
-Lesson_Part.init(
+class LessonPart extends Model {}
+LessonPart.init(
     {
         lessonPartId: {
             type: DataTypes.INTEGER,
@@ -95,7 +96,7 @@ Lesson_Part.init(
         }
 },
 {
-    modelName: 'lessonPart',
+    modelName: 'lesson_part',
     sequelize: db
 }
 )
@@ -125,6 +126,9 @@ Prompt.init(
 
 //association methods (relationships, foreign keys, etc)
 
+User.hasMany(Journal)
+Journal.belongsTo(User)
+
 if (process.argv[1] === url.fileURLToPath(import.meta.url)) {  //we don't totally know what this does, but it's boilerplate
     console.log("Syncing database...")
     await db.sync()
@@ -133,8 +137,4 @@ if (process.argv[1] === url.fileURLToPath(import.meta.url)) {  //we don't totall
 
 
 //export models 
-export {User}
-export {Lesson}
-export {Journal}
-export {Lesson_Part}
-export {Prompt}
+export {User, Lesson, Journal, LessonPart, Prompt}
