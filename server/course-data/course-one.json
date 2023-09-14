@@ -90,7 +90,8 @@
       },
       {
         "title": null,
-        "content": "**You have four core strengths. You will see through your own experiences how important these are to you.**"
+        "content": "**You have four core strengths. You will see through your own experiences how important these are to you.**",
+        "prompts": []
       }
     ]
   }
