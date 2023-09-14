@@ -46,8 +46,8 @@ Lesson.init(
         lessonName: {
             type: DataTypes.STRING
         },
-        lessonContent: {
-            type: DataTypes.STRING
+        lessonDay: {
+            type: DataTypes.INTEGER
         }
 },
 {
@@ -63,12 +63,6 @@ Journal.init(
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
-        },
-        userId: {
-            type: DataTypes.INTEGER
-        },
-        promptId: {
-            type: DataTypes.INTEGER
         },
         journalEntry: {
             type: DataTypes.STRING(10000)
@@ -88,11 +82,14 @@ LessonPart.init(
             primaryKey: true,
             autoIncrement: true
         },
+        partOrder: {
+            type: DataTypes.INTEGER
+        },
         partContent: {
             type: DataTypes.STRING(2500)
         },
-        lessonId: {
-            type: DataTypes.INTEGER
+        partTitle: {
+            type: DataTypes.STRING
         }
 },
 {
@@ -109,11 +106,11 @@ Prompt.init(
             primaryKey: true,
             autoIncrement: true
         },
+        promptOrder: {
+            type: DataTypes.INTEGER
+        },
         prompt: {
             type: DataTypes.STRING(1000)
-        },
-        lessonPartId: {
-            type: DataTypes.INTEGER
         }
 },
 {
@@ -122,12 +119,44 @@ Prompt.init(
 }
 )
 
+class Course extends Model {}
+Course.init(
+    {
+        courseId: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true
+        },
+        courseTitle: {
+            type: DataTypes.STRING
+        }
+},
+{
+    modelName: 'course',
+    sequelize: db
+}
+)
+
 
 
 //association methods (relationships, foreign keys, etc)
 
-User.hasMany(Journal)
-Journal.belongsTo(User)
+User.hasMany(Journal, {foreignKey: 'userId'})
+Journal.belongsTo(User, {foreignKey: 'userId'})
+
+Prompt.hasMany(Journal, {foreignKey: 'promptId'})
+Journal.belongsTo(Prompt, {foreignKey: 'promptId'})
+
+LessonPart.hasMany(Prompt, {foreignKey: 'lessonPartId'})
+Prompt.belongsTo(LessonPart, {foreignKey: 'lessonPartId'})
+
+Lesson.hasMany(LessonPart, {foreignKey: 'lessonId'})
+LessonPart.belongsTo(Lesson, {foreignKey: 'lessonId'})
+
+Course.hasMany(Lesson, {foreignKey: 'courseId'})
+Lesson.belongsTo(Course, {foreignKey: 'courseId'})
+
+
 
 if (process.argv[1] === url.fileURLToPath(import.meta.url)) {  //we don't totally know what this does, but it's boilerplate
     console.log("Syncing database...")
@@ -137,4 +166,4 @@ if (process.argv[1] === url.fileURLToPath(import.meta.url)) {  //we don't totall
 
 
 //export models 
-export {User, Lesson, Journal, LessonPart, Prompt}
+export {User, Lesson, Journal, LessonPart, Prompt, Course}
