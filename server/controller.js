@@ -5,8 +5,10 @@ export default {
   getCourse: async (req, res) => {
     try {
       console.log("show all lessons with their parts and prompts");
+      const courseId = req.params.courseId;
+
       let courseData = await Course.findOne({
-        where: { courseId: 1 },
+        where: { courseId },
         include: [
           {
             model: Lesson,
