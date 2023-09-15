@@ -113,7 +113,9 @@
       {
         "title": "Take Charge of Your Challenge",
         "content": null,
-        "prompts": ["Which of the steps is most difficult for you? For example, is it harder for you to slow down and be aware of what you are feeling, thinking, and doing than it is to ask for assistance? Or, is it harder to ask for assistance than it is to see what you could do to make the situation better? Which step challenges you the most?"]
+        "prompts": [
+          "Which of the steps is most difficult for you? For example, is it harder for you to slow down and be aware of what you are feeling, thinking, and doing than it is to ask for assistance? Or, is it harder to ask for assistance than it is to see what you could do to make the situation better? Which step challenges you the most?"
+        ]
       },
       {
         "title": null,

@@ -86,7 +86,7 @@ LessonPart.init(
             type: DataTypes.INTEGER
         },
         partContent: {
-            type: DataTypes.STRING(2500)
+            type: DataTypes.STRING(5000)
         },
         partTitle: {
             type: DataTypes.STRING
@@ -110,7 +110,7 @@ Prompt.init(
             type: DataTypes.INTEGER
         },
         prompt: {
-            type: DataTypes.STRING(1000)
+            type: DataTypes.STRING(5000)
         }
 },
 {

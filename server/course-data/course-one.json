@@ -71,22 +71,31 @@
       {
         "title": "Core Strength: Love",
         "content": "**Love**: Engage a person's needs as your concerns, too.\nLove means taking a person's needs, concerns, and challenges—including your own—seriously enough that you sincerely engage in addressing those needs with openness and collaboration. Love can also be spent on a task or a goal as you see the task's requirements or needs and treat them seriously.",
-        "prompts": ["Think about two or three people or things that you love in your life. Now, reread the definition for *love*. Do you measure up to this definition? How do you measure up, and also how do you fall short?"]
+        "prompts": [
+          "Think about two or three people or things that you love in your life. Now, reread the definition for *love*. Do you measure up to this definition? How do you measure up, and also how do you fall short?"
+        ]
       },
       {
         "title": "Core Strength: Agency",
         "content": "*Agency*: The ability to choose and be accountable.\nYou can make choices—nearly any choice that you want—and you are accountable for your choices. Accountability means seeing the healthy and unhealthy outcomes of your choices. It also involves being responsible for those outcomes.",
-        "prompts": ["Think about a challenging situation in your life. Are you choosing how things are going? Or do you force things, or maybe feel forced?"]
+        "prompts": [
+          "Think about a challenging situation in your life. Are you choosing how things are going? Or do you force things, or maybe feel forced?"
+        ]
       },
       {
         "title": "Core Strength: Change",
         "content": "*Change*: You can identify what is not working and be willing to make things more healthy.\nEveryone has the chance to learn. We can apply what we've learned to make adjustments, and change.",
-        "prompts": ["Think about a situation or relationship that is unacceptable to you. What is working, and what is not working?", "Are you willing to address each of the above concerns?"]
+        "prompts": [
+          "Think about a situation or relationship that is unacceptable to you. What is working, and what is not working?",
+          "Are you willing to address each of the above concerns?"
+        ]
       },
       {
         "title": "Core Strength: Discernment",
         "content": "*Discernment*: You can personally sense what is healthy and not healthy for you.\nDiscernment can be applied to the present moment, past events, ideas, words, or actions. Discernment is really listening to your inner sense.",
-        "prompts": ["Think about an opportunity, situation, or relationship that is currently on your mind. What feels healthy to you? What feels unhealthy?"]
+        "prompts": [
+          "Think about an opportunity, situation, or relationship that is currently on your mind. What feels healthy to you? What feels unhealthy?"
+        ]
       },
       {
         "title": null,

@@ -5,7 +5,6 @@ import { User, Lesson, Journal, LessonPart, Prompt, Course } from "./model.js";
 import courseOne from "./course-data/course-one.json" assert { type: "json" };
 import courseTwo from "./course-data/course-two.json" assert { type: "json" };
 import courseThree from "./course-data/course-three.json" assert { type: "json" };
-import courseFour from "./course-data/course-four.json" assert { type: "json" };
 
 
 const seedDatabase = async () => {
@@ -17,41 +16,39 @@ const seedDatabase = async () => {
       { title: "Course 1: The Foundation", data: courseOne },
       { title: "Course 2: Progression Principles", data: courseTwo },
       { title: "Course 3: Trauma Resolution", data: courseThree },
-      { title: "Course 4: Progression Principles", data: courseFour },
     ];
 
     for (const courseData of courses) {
       const { title, data: lessonsData } = courseData;
+      console.log(title, lessonsData)
       const newCourse = await Course.create({
         courseTitle: title,
       });
 
-      for (const lessonData of lessonsData) {
-        const { title: lessonTitle, parts } = lessonData;
-        const newLesson = await Lesson.create({
-          lessonName: lessonTitle,
+      courseOne.forEach(async (lesson, index) => {
+        let newLesson = await Lesson.create({
+          lessonName: lesson.title,
+          lessonDay: index,
           courseId: newCourse.courseId,
         });
-
-        for (const partData of parts) {
-          const { order, content, title: partTitle, prompts } = partData;
-          const newPart = await LessonPart.create({
-            partOrder: order,
-            partContent: content,
-            partTitle: partTitle,
+    
+        lesson.parts.forEach(async (part, partIndex) => {
+          let newPart = await LessonPart.create({
+            partOrder: partIndex+1,
+            partContent: part.content,
+            partTitle: part.title,
             lessonId: newLesson.lessonId,
           });
-
-          for (const promptData of prompts) {
-            const { order: promptOrder, prompt } = promptData;
+    
+          part.prompts.forEach(async (prompt, promptIndex) => {
             await Prompt.create({
-              promptOrder: promptOrder,
+              promptOrder: promptIndex+1,
               prompt: prompt,
               lessonPartId: newPart.lessonPartId,
             });
-          }
-        }
-      }
+          })
+        })
+      })
     }
 
     console.log("Seeded database");
