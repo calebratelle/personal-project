@@ -20,7 +20,7 @@ await db.sync().then(async () => {
 
     lesson.parts.forEach(async (part, partIndex) => {
       let newPart = await LessonPart.create({
-        partOrder: partIndex+1,
+        partOrder: partIndex + 1,
         partContent: part.content,
         partTitle: part.title,
         lessonId: newLesson.lessonId,
@@ -28,7 +28,7 @@ await db.sync().then(async () => {
 
       part.prompts.forEach(async (prompt, promptIndex) => {
         await Prompt.create({
-          promptOrder: promptIndex+1,
+          promptOrder: promptIndex + 1,
           prompt: prompt,
           lessonPartId: newPart.lessonPartId,
         });
@@ -38,6 +38,3 @@ await db.sync().then(async () => {
 });
 console.log("seeded database");
 db.close();
-
-
-

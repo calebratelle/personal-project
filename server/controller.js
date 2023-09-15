@@ -27,7 +27,7 @@ export default {
       // Send the courseData as a response
       res.status(200).json(courseData);
     } catch (err) {
-      console.error(err);
+      console.log(err);
       res.status(500).send("Something ain't right");
     }
   },
