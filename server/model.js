@@ -8,6 +8,7 @@ import connectToDB from './db.js';
 const db = await connectToDB('postgresql:///personal-project')
 
 //models
+//verify if the lesson parts content matches the course ID.  If so, the issue is in the query, if not, its in the seed.
 
 class User extends Model {}
 User.init(

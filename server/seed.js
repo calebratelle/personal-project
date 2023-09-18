@@ -20,12 +20,12 @@ const seedDatabase = async () => {
 
     for (const courseData of courses) {
       const { title, data: lessonsData } = courseData;
-      console.log(title, lessonsData)
       const newCourse = await Course.create({
         courseTitle: title,
       });
-
-      courseOne.forEach(async (lesson, index) => {
+      
+      lessonsData.forEach(async (lesson, index) => {
+        console.log(newCourse.courseId)
         let newLesson = await Lesson.create({
           lessonName: lesson.title,
           lessonDay: index,

@@ -7,9 +7,9 @@ const Home = ({ handleCourseSelection }) => {
 
   return (
     <div>
-      <button onClick={() => selectCourse('Course I: The Foundation')}>Course I: The Foundation</button>
-      <button onClick={() => selectCourse('Course II: Progression Principles')}>Course II: Progression Principles</button>
-      <button onClick={() => selectCourse('Course III: Trauma Resolution')}>Course III: Trauma Resolution</button>
+      <button onClick={() => selectCourse({title: 'Course I: The Foundation', id: 1})}>Course I: The Foundation</button>
+      <button onClick={() => selectCourse({title: 'Course II: Progression Principles', id: 2})}>Course II: Progression Principles</button>
+      <button onClick={() => selectCourse({title: 'Course III: Trauma Resolution', id: 3})}>Course III: Trauma Resolution</button>
     </div>
   );
 }
