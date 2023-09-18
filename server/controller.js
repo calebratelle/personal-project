@@ -18,13 +18,17 @@ export default {
                 include: [
                   {
                     model: Prompt,
+                    order: [['promptId', 'ASC']], 
                   },
                 ],
+                order: [['lessonPartId', 'ASC']], 
               },
             ],
+            order: [['lessonId', 'ASC']], 
           },
         ],
       });
+      
 
       // Send the courseData as a response
       res.status(200).json(courseData);
