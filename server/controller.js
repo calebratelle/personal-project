@@ -18,15 +18,14 @@ export default {
                 include: [
                   {
                     model: Prompt,
-                    order: [['promptId', 'ASC']], 
                   },
                 ],
-                order: [['lessonPartId', 'ASC']], 
               },
             ],
-            order: [['lessonId', 'ASC']], 
+            order: [[LessonPart, 'lessonPartId', 'ASC']]
           },
         ],
+        order: [[Lesson, 'lessonId', 'ASC']]
       });
       
 

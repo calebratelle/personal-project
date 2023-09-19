@@ -48,7 +48,7 @@ function App() {
           path="/home"
           element={<Home handleCourseSelection={handleCourseSelection} />}
         />
-        <Route path="/course" element={<Course />} />
+        <Route path="/course/:id" element={<Course />} />
         <Route path="/journal" element={<Journal />} />
       </Routes>
     </>
