@@ -24,6 +24,14 @@ const Course = () => {
       });
   }, [id]);
 
+  const generateStyledText = str => {
+    return str.split("\n").map(sentence => {
+      return <p>
+      {sentence}
+      </p>
+    })
+}
+
   return (
     <div>
       {courseContent ? (
@@ -32,11 +40,11 @@ const Course = () => {
           {currentLesson.lesson_parts.map((part, lessonPartId) => (
             <div key={lessonPartId}>
               <h2>{part.partTitle}</h2>
-              <h4>{part.partContent}</h4>
+              <p>{generateStyledText(part.partContent)}</p>
               {part.prompts &&
                 part.prompts.map((prompt, promptOrder) => (
                   <div key={promptOrder}>
-                    <h4>{prompt.prompt}</h4>
+                    <p>{prompt.prompt}</p>
                     <textarea
                       style={{ width: '85%', height: '80px' }}
                     />
