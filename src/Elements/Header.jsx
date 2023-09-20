@@ -1,10 +1,7 @@
 import React from 'react'
 import { NavLink } from "react-router-dom"
-import { useParams } from "react-router-dom";
-
 
 const Header = ({currentCourse}) => {
-  const { id } = useParams();
     const navLinkStyle = {
         marginRight: '20px', // Adjust the spacing as needed
 
@@ -13,7 +10,7 @@ const Header = ({currentCourse}) => {
   return (
     <div>
         <NavLink to = '/home' style={navLinkStyle}>Home</NavLink>
-        <NavLink to = `/course/${id}` style={navLinkStyle}>{currentCourse}</NavLink>
+        <NavLink to = {`/course/${currentCourse.id}`} style={navLinkStyle}>{currentCourse.title}</NavLink>
         <NavLink to = '/journal' style={navLinkStyle}>Journal</NavLink>
         <NavLink to = '/' style={navLinkStyle}>Logout</NavLink>
     </div>

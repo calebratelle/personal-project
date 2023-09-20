@@ -41,7 +41,7 @@ function App() {
 
   return (
     <>
-      {renderHeader && <Header currentCourse={selectedCourse.title} />}
+      {renderHeader && <Header currentCourse={selectedCourse} />}
       <Routes>
         <Route index element={<Login />} />
         <Route
