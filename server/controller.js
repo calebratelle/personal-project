@@ -7,7 +7,7 @@ export default {
       console.log("show all lessons with their parts and prompts");
       const courseId = req.params.courseId;
 
-      let courseData = await Course.findOne({
+      const courseData = await Course.findOne({
         where: { courseId },
         include: [
           {
@@ -22,11 +22,15 @@ export default {
                 ],
               },
             ],
-            order: [[LessonPart, 'lessonPartId', 'ASC']]
           },
         ],
-        order: [[Lesson, 'lessonId', 'ASC']]
+        order: [
+          [Lesson, 'lessonId', 'ASC'],
+          [Lesson, LessonPart, 'lessonPartId', 'ASC'],
+          [Lesson, LessonPart, Prompt, 'promptId', 'ASC'],
+        ],
       });
+      
       
 
       // Send the courseData as a response
