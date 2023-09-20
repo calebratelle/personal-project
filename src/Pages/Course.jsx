@@ -29,6 +29,14 @@ const Course = () => {
       {courseContent ? (
         <div>
           <h1>{currentLesson.lessonName}</h1>
+          <h4>{currentLesson.lesson_parts[0].partContent}</h4>
+          <h2>{currentLesson.lesson_parts[1].partTitle}</h2>
+          <h4>{currentLesson.lesson_parts[1].partContent}</h4>
+          <h2>{currentLesson.lesson_parts[2].partTitle}</h2>
+          <h4>{currentLesson.lesson_parts[2].partContent}</h4>
+          <h2>{currentLesson.lesson_parts[3].partTitle}</h2>
+          <h4>{currentLesson.lesson_parts[3].partContent}</h4>
+          <h4>{currentLesson.lesson_parts[3].prompts[0].prompt}</h4>
         </div>
       ) : (
         <p>Loading course content...</p>
