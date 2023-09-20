@@ -29,20 +29,28 @@ const Course = () => {
       {courseContent ? (
         <div>
           <h1>{currentLesson.lessonName}</h1>
-          <h4>{currentLesson.lesson_parts[0].partContent}</h4>
-          <h2>{currentLesson.lesson_parts[1].partTitle}</h2>
-          <h4>{currentLesson.lesson_parts[1].partContent}</h4>
-          <h2>{currentLesson.lesson_parts[2].partTitle}</h2>
-          <h4>{currentLesson.lesson_parts[2].partContent}</h4>
-          <h2>{currentLesson.lesson_parts[3].partTitle}</h2>
-          <h4>{currentLesson.lesson_parts[3].partContent}</h4>
-          <h4>{currentLesson.lesson_parts[3].prompts[0].prompt}</h4>
+          {currentLesson.lesson_parts.map((part, lessonPartId) => (
+            <div key={lessonPartId}>
+              <h2>{part.partTitle}</h2>
+              <h4>{part.partContent}</h4>
+              {part.prompts &&
+                part.prompts.map((prompt, promptOrder) => (
+                  <div key={promptOrder}>
+                    <h4>{prompt.prompt}</h4>
+                    <textarea
+                    style={{ width: '90%', height: '80px' }}/>
+                  </div>
+                ))}
+            </div>
+          ))}
         </div>
       ) : (
         <p>Loading course content...</p>
       )}
     </div>
   );
+  
+  
 };
 
 export default Course;
