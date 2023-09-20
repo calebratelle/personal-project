@@ -9,7 +9,7 @@ const Header = ({currentCourse}) => {
 
   return (
     <div>
-        <NavLink to = '/home' style={navLinkStyle}>Home</NavLink>
+        <NavLink to = '/home' style={navLinkStyle}>All Courses</NavLink>
         <NavLink to = {`/course/${currentCourse.id}`} style={navLinkStyle}>{currentCourse.title}</NavLink>
         <NavLink to = '/journal' style={navLinkStyle}>Journal</NavLink>
         <NavLink to = '/' style={navLinkStyle}>Logout</NavLink>

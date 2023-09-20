@@ -38,7 +38,8 @@ const Course = () => {
                   <div key={promptOrder}>
                     <h4>{prompt.prompt}</h4>
                     <textarea
-                    style={{ width: '90%', height: '80px' }}/>
+                      style={{ width: '85%', height: '80px' }}
+                    />
                   </div>
                 ))}
             </div>
@@ -49,6 +50,7 @@ const Course = () => {
       )}
     </div>
   );
+  
   
   
 };
