@@ -30,8 +30,9 @@ const Course = () => {
   };
 
   return (
+      <div style={{ display: "flex", justifyContent: "flex-start" }}>
     <div>
-      <div>
+      <p></p>
         {courseContent.lessons &&
           courseContent.lessons.map((lesson) => (
             <button key={lesson.id} onClick={() => setCurrentLesson(lesson)}>
@@ -54,7 +55,7 @@ const Course = () => {
                   part.prompts.map((prompt, promptOrder) => (
                     <div key={promptOrder}>
                       <p>{prompt.prompt}</p>
-                      <textarea style={{ width: "100%", height: "80px" }} />
+                      <textarea style={{ width: "90%", height: "80px" }} />
                     </div>
                   ))}
               </div>
