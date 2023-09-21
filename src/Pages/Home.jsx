@@ -17,26 +17,27 @@ const Home = ({ handleCourseSelection }) => {
           Course I: The Foundation
         </button>
       </NavLink>
-      <NavLink to ="/course/2" activeClassName="active">
-      <button
-        onClick={() =>
-          selectCourse({ title: "Course II: Progression Principles", id: 2 })
-        }
+      <NavLink to="/course/2" activeClassName="active">
+        <button
+          onClick={() =>
+            selectCourse({ title: "Course II: Progression Principles", id: 2 })
+          }
         >
-        Course II: Progression Principles
-      </button>
-        </NavLink>
-        <NavLink to="/course/3" activeClassName="active">
-      <button
-        onClick={() =>
-          selectCourse({ title: "Course III: Trauma Resolution", id: 3 })
-        }
+          Course II: Progression Principles
+        </button>
+      </NavLink>
+      <NavLink to="/course/3" activeClassName="active">
+        <button
+          onClick={() =>
+            selectCourse({ title: "Course III: Trauma Resolution", id: 3 })
+          }
         >
-        Course III: Trauma Resolution
-      </button>
-        </NavLink>
+          Course III: Trauma Resolution
+        </button>
+      </NavLink>
     </div>
   );
 };
 
 export default Home;
+
