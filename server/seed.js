@@ -5,12 +5,20 @@ import { User, Lesson, Journal, LessonPart, Prompt, Course } from "./model.js";
 import courseOne from "./course-data/course-one.json" assert { type: "json" };
 import courseTwo from "./course-data/course-two.json" assert { type: "json" };
 import courseThree from "./course-data/course-three.json" assert { type: "json" };
+import bcrypt from 'bcryptjs'
 
 
 const seedDatabase = async () => {
   try {
     const db = await connectToDB("postgresql:///personal-project");
-    await db.sync();
+    await db.sync({ force: true }); // Use await here to ensure sync completes before proceeding
+
+    // Create a user
+    await User.create({
+      username: 'Caleb',
+      hashedPass: await bcrypt.hash('jhsg76jks65BN', 10), // Hash the password
+      isAdmin: true
+    });
 
     const courses = [
       { title: "Course 1: The Foundation", data: courseOne },
@@ -18,6 +26,7 @@ const seedDatabase = async () => {
       { title: "Course 3: Trauma Resolution", data: courseThree },
     ];
 
+      
     for (const courseData of courses) {
       const { title, data: lessonsData } = courseData;
       const newCourse = await Course.create({
