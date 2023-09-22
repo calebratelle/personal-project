@@ -1,5 +1,5 @@
 //instructions: create a get request that includes lesson, lesson parts, and prompts all included in the object
-import { Lesson, LessonPart, Prompt, Course } from "./model.js"; // Import your models
+import { Lesson, LessonPart, Prompt, Course } from "../model.js"; // Import your models
 
 export default {
   getCourse: async (req, res) => {
