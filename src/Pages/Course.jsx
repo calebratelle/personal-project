@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import JournalEntry from "../Elements/JournalEntry";
 
 const Course = () => {
   const { id } = useParams();
@@ -30,9 +31,9 @@ const Course = () => {
   };
 
   return (
-      <div style={{ display: "flex", justifyContent: "flex-start" }}>
-    <div>
-      <p></p>
+    <div style={{ display: "flex", justifyContent: "flex-start" }}>
+      <div>
+        <p></p>
         {courseContent.lessons &&
           courseContent.lessons.map((lesson) => (
             <button key={lesson.id} onClick={() => setCurrentLesson(lesson)}>
@@ -48,15 +49,15 @@ const Course = () => {
             currentLesson.lesson_parts.map((part, lessonPartId) => (
               <div key={lessonPartId}>
                 <h2>{part.partTitle}</h2>
-                <p>
+                <div>
                   {part.partContent && generateStyledText(part.partContent)}
-                </p>
+                </div>
                 {part.prompts &&
-                  part.prompts.map((prompt, promptOrder) => (
-                    <div key={promptOrder}>
-                      <p>{prompt.prompt}</p>
-                      <textarea style={{ width: "90%", height: "80px" }} />
-                    </div>
+                  part.prompts.map((prompt) => (
+                    <JournalEntry
+                      key={prompt.promptId}
+                      prompt={prompt}
+                    />
                   ))}
               </div>
             ))}
