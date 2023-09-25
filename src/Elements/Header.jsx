@@ -1,20 +1,46 @@
-import React from 'react'
-import { NavLink } from "react-router-dom"
+import React, { useEffect } from "react";
+import { NavLink } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
-const Header = ({currentCourse}) => {
-    const navLinkStyle = {
-        marginRight: '20px', // Adjust the spacing as needed
+import axios from "axios";
 
-      };
+const Header = ({ currentCourse }) => {
+  const dispatch = useDispatch();
+  const userId = useSelector((state) => state.userId);
+
+  useEffect(() => {
+    axios
+      .get("/api/user")
+      .then((res) => dispatch({ type: "LOGIN", payload: res.data.userId }))
+      .catch((err) => console.log(err));
+  }, [dispatch]);
+
+  const navLinkStyle = {
+    marginRight: "20px",
+  };
+
+  const handleLogout = () => {
+    axios.delete("/api/logout").then((res) => dispatch({ type: "LOGOUT" }));
+  };
 
   return (
-    <div>
-        <NavLink to = '/home' style={navLinkStyle}>All Courses</NavLink>
-        <NavLink to = {`/course/${currentCourse.id}`} style={navLinkStyle}>{currentCourse.title}</NavLink>
-        <NavLink to = '/journal' style={navLinkStyle}>Journal</NavLink>
-        <NavLink to = '/' style={navLinkStyle}>Logout</NavLink>
-    </div>
-  )
-}
+    <>
+      {userId ? (
+        <nav>
+          <NavLink to="/home" style={navLinkStyle}>
+            All Courses
+          </NavLink>
+          <NavLink to={`/course/${currentCourse.id}`} style={navLinkStyle}>
+            {currentCourse.title}
+          </NavLink>
+          <NavLink to="/journal" style={navLinkStyle}>
+            Journal
+          </NavLink>
+          <button onClick={handleLogout}>Logout</button>
+        </nav>
+      ) : null}
+    </>
+  );
+};
 
-export default Header
+export default Header;

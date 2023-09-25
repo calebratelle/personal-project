@@ -1,10 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [register, setRegister] = useState(false);
+  const dispatch = useDispatch()
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -13,6 +15,7 @@ const Login = () => {
       .post(register ? "/api/register" : "/api/login", { username, password })
       .then((res) => {
         console.log(res.data);
+        dispatch({type: "LOGIN", payload: res.data.userId})
       })
       .catch((err) => console.log(err));
   };

@@ -5,10 +5,12 @@ import Course from "./Pages/Course";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import Journal from "./Pages/Journal";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, Navigate} from "react-router-dom";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 function App() {
+  const userId = useSelector(state => state.userId)
   const [selectedCourse, setSelectedCourse] = useState({
     title: 'Course I: The Foundation',
     id: 1,
@@ -43,13 +45,13 @@ function App() {
     <>
       {renderHeader && <Header currentCourse={selectedCourse} />}
       <Routes>
-        <Route index element={<Login />} />
+        <Route index element={userId ? <Navigate to='/home' /> : <Login />} />
         <Route
           path="/home"
-          element={<Home handleCourseSelection={handleCourseSelection} />}
+          element={userId ? <Home handleCourseSelection={handleCourseSelection}/> : <Navigate to='/'/>}
         />
-        <Route path="/course/:id" element={<Course />} />
-        <Route path="/journal" element={<Journal />} />
+        <Route path="/course/:id" element={userId ? <Course /> : <Navigate to='/'/>} />
+        <Route path="/journal" element={userId ? <Journal /> : <Navigate to='/'/>} />
       </Routes>
     </>
   );
