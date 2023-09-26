@@ -23,11 +23,10 @@ function App() {
   const location = useLocation();
   const renderHeader = location.pathname !== "/";
 
-  // Function to fetch course data using the selected course ID
   const fetchCourseData = () => {
     console.log('fetch course data');
     axios
-      .get(`/api/course/${selectedCourse.id}`) // Use the correct ID here
+      .get(`/api/course/${selectedCourse.id}`) 
       .then((response) => {
         console.log(response.data);
       })
@@ -36,10 +35,9 @@ function App() {
       });
   };
 
-  // Use useEffect to fetch data when the selectedCourse changes
   useEffect(() => {
     fetchCourseData();
-  }, [selectedCourse.id]); // Add selectedCourse.id to the dependencies array
+  }, [selectedCourse.id]); 
 
   return (
     <>

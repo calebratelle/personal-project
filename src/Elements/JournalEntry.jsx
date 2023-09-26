@@ -8,7 +8,17 @@ const JournalEntry = ({ prompt }) => {
   };
 
   const handleSubmit = () => {
-    // Send the responses to a server.
+    const userId = user.userId; 
+    const promptId = prompt.promptId; 
+
+    postJournal({ userId, promptId, journalEntry: userResponses })  //axios request to send the info to the backend
+      .then((response) => {
+        console.log("Journal entry saved:", response);
+      })
+      .catch((err) => {
+        console.error("Error saving journal entry:", err);
+      });
+
     console.log("Submitted:", userResponses);
   };
 

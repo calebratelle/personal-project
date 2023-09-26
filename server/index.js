@@ -3,9 +3,11 @@ import ViteExpress from 'vite-express';
 import ctrl from './controllers/courseCtrl.js';
 import session from "express-session";
 import authCtrl from "./controllers/authCtrl.js";
+import journalCtrl from "./controllers/journalCtrl.js";
 
 const { register, login, checkUser, logout } = authCtrl;
 const { getCourse } = ctrl;
+const {postJournal} = journalCtrl;
 
 const app = express();
 
@@ -25,6 +27,7 @@ app.use(session({
 app.get('/api/course/:courseId', getCourse);
 
 // Authentication endpoints
+app.post('/api/postjournal', postJournal)
 app.post('/api/register', register);
 app.post('/api/login', login);
 app.get('/api/user', checkUser);
