@@ -1,25 +1,23 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import axios from "axios";
 
 const JournalEntry = ({ prompt }) => {
   const [userResponses, setUserResponses] = useState("");
+  const userId = useSelector(state => state.userId)
 
   const handleResponseChange = (e) => {
     setUserResponses(e.target.value);
   };
 
   const handleSubmit = () => {
-    const userId = user.userId; 
-    const promptId = prompt.promptId; 
+    const promptId = prompt.promptId;
 
-    postJournal({ userId, promptId, journalEntry: userResponses })  //axios request to send the info to the backend
-      .then((response) => {
-        console.log("Journal entry saved:", response);
-      })
-      .catch((err) => {
-        console.error("Error saving journal entry:", err);
-      });
+    // postJournal({ userId, promptId, journalEntry: userResponses }); //axios request to send the info to the backend
 
-    console.log("Submitted:", userResponses);
+    axios.post("/api/postjournal", { userId, promptId, journalEntry: userResponses }).then((response) => {
+      console.log(response.status, response.data.token);
+    });
   };
 
   return (

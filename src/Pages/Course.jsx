@@ -10,10 +10,9 @@ const Course = () => {
   const [currentLesson, setCurrentLesson] = useState({});
 
   useEffect(() => {
-    const apiUrl = `http://localhost:2319/api/course/${id}`;
-
+   
     axios
-      .get(apiUrl)
+      .get(`/api/course/${id}`)
       .then((res) => {
         setCourseContent(res.data);
         setCurrentLesson(res.data.lessons[0] || {});
