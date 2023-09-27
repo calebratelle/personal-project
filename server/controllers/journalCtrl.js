@@ -6,44 +6,53 @@ export default {
     try {
       const { userId, promptId, journalEntry } = req.body;
 
-      // Check if the user with the given userId exists
       const user = await User.findOne({ where: { userId } });
 
       if (!user) {
         return res.status(404).json({ error: "User not found." });
       }
 
-      // Check if the prompt with the given promptId exists
       const prompt = await Prompt.findOne({ where: { promptId } });
 
       if (!prompt) {
         return res.status(404).json({ error: "Prompt not found." });
       }
 
-      // Create a new journal entry in the database
-      const newJournalEntry = await Journal.create({
-        userId,
-        promptId,
-        journalEntry,
+      const existingJournalEntry = await Journal.findOne({
+        where: { userId, promptId },
       });
 
-      return res.status(200).json(newJournalEntry);
+      if (existingJournalEntry) {
+        existingJournalEntry.journalEntry = journalEntry;
+        await existingJournalEntry.save();
+        return res.status(200).json(existingJournalEntry);
+      } else {
+        const newJournalEntry = await Journal.create({
+          userId,
+          promptId,
+          journalEntry,
+        });
+        return res.status(200).json(newJournalEntry);
+      }
     } catch (err) {
       console.error(err);
       return res.status(500).json({ error: "Internal Server Error" });
     }
   },
-  
+
   getJournals: async (req, res) => {
     try {
       console.log("show all journals with their prompts");
       const userId = req.session.user.userId;
-
       const journalData = await Journal.findAll({
-        where: { userId }, 
+        where: { userId },
+        include: [
+          {
+            model: Prompt,
+          },
+        ],
       });
-
-      // Send the journalData as a response
+      console.log(journalData);
       res.status(200).json(journalData);
     } catch (err) {
       console.log(err);

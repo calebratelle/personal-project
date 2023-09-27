@@ -9,6 +9,7 @@ const JournalComponent = () => {
       .get('/api/journal')
       .then((res) => {
         setJournalEntries(res.data);
+        console.log(res.data)
       })
       .catch((err) => {
         console.error(err);
@@ -20,6 +21,7 @@ const JournalComponent = () => {
         <div>
           {journalEntries.map((entry) => (
             <div key={entry.id}>
+              <p>{entry.prompt.prompt}</p>
               {entry.journalEntry}
             </div>
           ))}
