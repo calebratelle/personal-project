@@ -9,8 +9,7 @@ const Course = () => {
   const [courseContent, setCourseContent] = useState({});
   const [currentLesson, setCurrentLesson] = useState({});
 
-  useEffect(() => {
-   
+  const getCourseContent = () => {
     axios
       .get(`/api/course/${id}`)
       .then((res) => {
@@ -21,7 +20,12 @@ const Course = () => {
       .catch((err) => {
         console.error(err);
       });
-  }, [id]);
+
+  }
+  console.log(currentLesson)
+  useEffect(() => {
+   
+    getCourseContent()}, [id]);
 
   const generateStyledText = (str) => {
     return str.split("\n").map((sentence, index) => {
@@ -56,6 +60,7 @@ const Course = () => {
                     <JournalEntry
                       key={prompt.promptId}
                       prompt={prompt}
+                      getCourseContent={getCourseContent}
                     />
                   ))}
               </div>

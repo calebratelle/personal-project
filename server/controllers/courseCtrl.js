@@ -1,5 +1,5 @@
 
-import { Lesson, LessonPart, Prompt, Course } from "../model.js"; // Import your models
+import { Lesson, LessonPart, Prompt, Course, Journal } from "../model.js"; // Import your models
 
 export default {
   getCourse: async (req, res) => {
@@ -18,6 +18,11 @@ export default {
                 include: [
                   {
                     model: Prompt,
+                    include: [
+                      {
+                        model: Journal,
+                      }
+                    ]
                   },
                 ],
               },

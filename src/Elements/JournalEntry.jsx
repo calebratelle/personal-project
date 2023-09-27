@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, {useState} from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
@@ -6,8 +6,8 @@ import axios from "axios";
 //update this file so that journal entry text boxes autopopulate with the saved data from the DB
 //update Journal.jsx so that journal entries are presented with their respective prompts.
 
-const JournalEntry = ({ prompt }) => {
-  const [userResponses, setUserResponses] = useState("");
+const JournalEntry = ({ prompt, getCourseContent }) => {
+  const [userResponses, setUserResponses] = useState(prompt.journals[0] ? prompt.journals[0].journalEntry : '');
   const userId = useSelector(state => state.userId)
 
   const handleResponseChange = (e) => {
@@ -20,7 +20,8 @@ const JournalEntry = ({ prompt }) => {
 
     axios.post("/api/postjournal", { userId, promptId, journalEntry: userResponses }).then((response) => {
       console.log(response.status, response.data.token);
-    });
+    getCourseContent()});
+
   };
 
   return (
@@ -28,7 +29,7 @@ const JournalEntry = ({ prompt }) => {
       <p>{prompt.prompt}</p>
       <textarea
         style={{ width: "90%", height: "80px" }}
-        defaultValue={userResponses}
+        value={userResponses}
         onChange={handleResponseChange}
       />
       <button onClick={handleSubmit}>Save</button>

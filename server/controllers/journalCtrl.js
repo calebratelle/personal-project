@@ -52,7 +52,6 @@ export default {
           },
         ],
       });
-      console.log(journalData);
       res.status(200).json(journalData);
     } catch (err) {
       console.log(err);
