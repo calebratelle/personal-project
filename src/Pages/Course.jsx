@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import JournalEntry from "../Elements/JournalEntry";
 
 const Course = () => {
-  const { id } = useParams();
+  const { id, lessonid} = useParams();
+
+  const navigate = useNavigate()
 
   const [courseContent, setCourseContent] = useState({});
   const [currentLesson, setCurrentLesson] = useState({});
@@ -14,7 +16,7 @@ const Course = () => {
       .get(`/api/course/${id}`)
       .then((res) => {
         setCourseContent(res.data);
-        setCurrentLesson(res.data.lessons[0] || {});
+        setCurrentLesson(res.data.lessons[lessonid] || {});
         console.log(res.data);
       })
       .catch((err) => {
@@ -22,6 +24,7 @@ const Course = () => {
       });
 
   }
+
   console.log(currentLesson)
   useEffect(() => {
    
@@ -38,8 +41,11 @@ const Course = () => {
       <div>
         <p></p>
         {courseContent.lessons &&
-          courseContent.lessons.map((lesson) => (
-            <button key={lesson.id} onClick={() => setCurrentLesson(lesson)}>
+          courseContent.lessons.map((lesson, index) => (
+            <button key={lesson.id} onClick={() => {
+            navigate(`/course/${id}/${index}`)
+            setCurrentLesson(lesson)
+            }}>
               {lesson.lessonName}
             </button>
           ))}

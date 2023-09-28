@@ -8,7 +8,7 @@ const Home = ({ handleCourseSelection }) => {
 
   return (
     <div>
-      <NavLink to="/course/1" activeClassName="active">
+      <NavLink to="/course/1/0" activeClassName="active">
         <button
           onClick={() =>
             selectCourse({ title: "Course I: The Foundation", id: 1 })
@@ -17,7 +17,7 @@ const Home = ({ handleCourseSelection }) => {
           Course I: The Foundation
         </button>
       </NavLink>
-      <NavLink to="/course/2" activeClassName="active">
+      <NavLink to="/course/2/0" activeClassName="active">
         <button
           onClick={() =>
             selectCourse({ title: "Course II: Progression Principles", id: 2 })
@@ -26,7 +26,7 @@ const Home = ({ handleCourseSelection }) => {
           Course II: Progression Principles
         </button>
       </NavLink>
-      <NavLink to="/course/3" activeClassName="active">
+      <NavLink to="/course/3/0" activeClassName="active">
         <button
           onClick={() =>
             selectCourse({ title: "Course III: Trauma Resolution", id: 3 })

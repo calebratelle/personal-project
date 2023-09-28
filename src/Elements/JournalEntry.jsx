@@ -2,10 +2,6 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
-//update the journal so that upon "submit", that journal entry with that specific prompt ID updates in the DB instead of adding a new row.
-//update this file so that journal entry text boxes autopopulate with the saved data from the DB
-//update Journal.jsx so that journal entries are presented with their respective prompts.
-
 const JournalEntry = ({ prompt, getCourseContent }) => {
   const [userResponses, setUserResponses] = useState(
     prompt.journals[0] ? prompt.journals[0].journalEntry : ""
@@ -26,7 +22,6 @@ const JournalEntry = ({ prompt, getCourseContent }) => {
       })
       .then((response) => {
         console.log(response.status, response.data.token);
-        window.reload(true);
         getCourseContent();
       });
   };
