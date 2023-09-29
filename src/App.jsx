@@ -41,6 +41,7 @@ function App() {
 
   useEffect(() => {
     fetchCourseData();
+    localStorage.route ? navigate(localStorage.route) : null
   }, [selectedCourse.id]);
 
   console.log(pathname);
@@ -51,7 +52,7 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={userId ? <Navigate to="/home" /> : <Login />}
+          element={userId ? localStorage.route ? <Navigate to={localStorage.route} /> : <Navigate to = '/home' /> : <Login />}
         />
         <Route
           path="/home"

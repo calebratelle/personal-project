@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import JournalEntry from "../Elements/JournalEntry";
 
 const Course = () => {
-  const { id, lessonid} = useParams();
-
-  const navigate = useNavigate()
+  const { id, lessonid } = useParams();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const pathname = location.pathname;
 
   const [courseContent, setCourseContent] = useState({});
   const [currentLesson, setCurrentLesson] = useState({});
@@ -22,13 +23,14 @@ const Course = () => {
       .catch((err) => {
         console.error(err);
       });
+  };
 
-  }
-
-  console.log(currentLesson)
+  console.log(currentLesson);
   useEffect(() => {
-   
-    getCourseContent()}, [id]);
+    getCourseContent();
+    console.log("HITTTTT", localStorage.route);
+    id && lessonid && localStorage.setItem("route", pathname);
+  }, [id]);
 
   const generateStyledText = (str) => {
     return str.split("\n").map((sentence, index) => {
@@ -42,10 +44,14 @@ const Course = () => {
         <p></p>
         {courseContent.lessons &&
           courseContent.lessons.map((lesson, index) => (
-            <button key={lesson.id} onClick={() => {
-            navigate(`/course/${id}/${index}`)
-            setCurrentLesson(lesson)
-            }}>
+            <button
+              key={lesson.id}
+              onClick={() => {
+                navigate(`/course/${id}/${index}`);
+                setCurrentLesson(lesson);
+                localStorage.setItem("route", `/course/${id}/${index}`);
+              }}
+            >
               {lesson.lessonName}
             </button>
           ))}

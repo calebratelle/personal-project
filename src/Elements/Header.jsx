@@ -21,6 +21,7 @@ const Header = ({ currentCourse }) => {
 
   const handleLogout = () => {
     axios.delete("/api/logout").then((res) => dispatch({ type: "LOGOUT" }));
+    localStorage.removeItem('route')
   };
 
   return (
@@ -30,7 +31,7 @@ const Header = ({ currentCourse }) => {
           <NavLink to="/home" style={navLinkStyle}>
             All Courses
           </NavLink>
-          <NavLink to={`/course/${currentCourse.id}`} style={navLinkStyle}>
+          <NavLink to={`/course/${currentCourse.id}/0`} style={navLinkStyle}>
             {currentCourse.title}
           </NavLink>
           <NavLink to="/journal" style={navLinkStyle}>
