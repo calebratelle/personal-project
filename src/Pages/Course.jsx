@@ -49,7 +49,7 @@ const Course = () => {
                 <button
                   key={lesson.id}
                   className={`btn btn-primary list-group-item list-group-item-action ${
-                    lesson.id === currentLesson.id ? "active" : ""
+                    lesson.lessonId === currentLesson.lessonId ? "bg-secondary" : "active"
                   }`}
                   style={{ marginBottom: "5px"}}
                   onClick={() => {

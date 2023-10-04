@@ -10,7 +10,6 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
 function App() {
   const userId = useSelector((state) => state.userId);
   const [selectedCourse, setSelectedCourse] = useState({
@@ -48,35 +47,44 @@ function App() {
 
   console.log(pathname);
 
+  const backgroundStyles = {
+    backgroundColor: "#f5f5f5",
+    minHeight: "100vh", 
+    display: "flex",
+    flexDirection: "column", 
+  };
+
   return (
-    <>
+    <div style={backgroundStyles}>
       {renderHeader && <Header currentCourse={selectedCourse} />}
-      <Routes>
-        <Route
-          path="/"
-          element={userId ? localStorage.route ? <Navigate to={localStorage.route} /> : <Navigate to = '/home' /> : <Login />}
-        />
-        <Route
-          path="/home"
-          element={
-            userId ? (
-              <Home handleCourseSelection={handleCourseSelection} />
-            ) : (
-              <Navigate to="/" />
-            )
-          }
-        />
-        <Route
-          path="/course/:id/:lessonid"
-          element={userId ? <Course /> : <Navigate to="/" />}
-        />
-        <Route
-          path="/journal"
-          element={userId ? <Journal /> : <Navigate to="/" />}
-        />
-      </Routes>
+      <div style={{ flex: 1 }}>
+        <Routes>
+          <Route
+            path="/"
+            element={userId ? localStorage.route ? <Navigate to={localStorage.route} /> : <Navigate to="/home" /> : <Login />}
+          />
+          <Route
+            path="/home"
+            element={
+              userId ? (
+                <Home handleCourseSelection={handleCourseSelection} />
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
+          <Route
+            path="/course/:id/:lessonid"
+            element={userId ? <Course /> : <Navigate to="/" />}
+          />
+          <Route
+            path="/journal"
+            element={userId ? <Journal /> : <Navigate to="/" />}
+          />
+        </Routes>
+      </div>
       <Footer />
-    </>
+    </div>
   );
 }
 

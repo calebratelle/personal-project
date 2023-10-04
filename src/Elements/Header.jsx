@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-
 import axios from "axios";
 
 const Header = ({ currentCourse }) => {
@@ -19,15 +18,19 @@ const Header = ({ currentCourse }) => {
     marginRight: "20px",
   };
 
+  const headerStyle = {
+    backgroundColor: "#e6e6e6",
+  };
+
   const handleLogout = () => {
     axios.delete("/api/logout").then((res) => dispatch({ type: "LOGOUT" }));
-    localStorage.removeItem('route')
+    localStorage.removeItem("route");
   };
 
   return (
     <>
       {userId ? (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <nav className="navbar navbar-expand-lg navbar-light sticky-top" style={headerStyle}>
           <p></p>
           <div className="container">
             <NavLink className="navbar-brand" to="/home">
