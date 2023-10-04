@@ -48,14 +48,16 @@ const Course = () => {
               courseContent.lessons.map((lesson, index) => (
                 <button
                   key={lesson.id}
-                  className={`list-group-item list-group-item-action ${
+                  className={`btn btn-primary list-group-item list-group-item-action ${
                     lesson.id === currentLesson.id ? "active" : ""
                   }`}
-                  style={{ marginBottom: "5px" }} // Add margin here
+                  style={{ marginBottom: "5px"}}
                   onClick={() => {
                     navigate(`/course/${id}/${index}`);
                     setCurrentLesson(lesson);
                     localStorage.setItem("route", `/course/${id}/${index}`);
+                    this.style.backgroundColor = "lightblue"; // Change to a different color upon click
+
                   }}
                 >
                   {lesson.lessonName}

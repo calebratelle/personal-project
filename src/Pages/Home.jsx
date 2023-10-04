@@ -9,8 +9,8 @@ const Home = ({ handleCourseSelection }) => {
   return (
     <div className="container">
       <div className="row justify-content-center">
-        <div className="col-md-8"> {/* Increase the card width */}
-          <div className="card mt-5 p-4"> {/* Add padding to the card */}
+        <div className="col-md-8"> 
+          <div className="card mt-5 p-4"> 
             <div className="card-body">
               <h1>Welcome!</h1>
               <p>Choose a course to get started:</p>
@@ -52,6 +52,11 @@ const Home = ({ handleCourseSelection }) => {
                   </button>
                 </NavLink>
               </div>
+              <style>{`
+                .d-flex.justify-content-between button {
+                  margin-right: 10px; /* Adjust the margin as needed */
+                }
+              `}</style>
             </div>
           </div>
         </div>
