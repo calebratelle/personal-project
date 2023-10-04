@@ -56,8 +56,6 @@ const Course = () => {
                     navigate(`/course/${id}/${index}`);
                     setCurrentLesson(lesson);
                     localStorage.setItem("route", `/course/${id}/${index}`);
-                    this.style.backgroundColor = "lightblue"; // Change to a different color upon click
-
                   }}
                 >
                   {lesson.lessonName}

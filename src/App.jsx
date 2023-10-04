@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Header from "./Elements/Header";
+import Footer from "./Elements/Footer";
 import Course from "./Pages/Course";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
@@ -74,6 +75,7 @@ function App() {
           element={userId ? <Journal /> : <Navigate to="/" />}
         />
       </Routes>
+      <Footer />
     </>
   );
 }

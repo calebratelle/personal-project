@@ -27,7 +27,8 @@ const Header = ({ currentCourse }) => {
   return (
     <>
       {userId ? (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+          <p></p>
           <div className="container">
             <NavLink className="navbar-brand" to="/home">
               All Courses

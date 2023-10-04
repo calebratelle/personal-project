@@ -3,11 +3,11 @@ import axios from "axios";
 
 const JournalComponent = () => {
   const [journalEntries, setJournalEntries] = useState([]);
-  const [selectedCourse, setSelectedCourse] = useState(""); // State to store the selected course
+  const [selectedCourse, setSelectedCourse] = useState(""); 
 
   useEffect(() => {
     axios
-      .get(`/api/journal?course=${selectedCourse}`) // Filter journal entries by the selected course
+      .get(`/api/journal?course=${selectedCourse}`) 
       .then((res) => {
         setJournalEntries(res.data);
         console.log(res.data);
@@ -18,7 +18,7 @@ const JournalComponent = () => {
   }, [selectedCourse]);
 
   const handleCourseChange = (e) => {
-    setSelectedCourse(e.target.value); // Update the selected course when the dropdown changes
+    setSelectedCourse(e.target.value);
   };
 
   return (
@@ -36,7 +36,6 @@ const JournalComponent = () => {
           ))}
         </div>
         <div className="col-md-3">
-          {/* Dropdown menu for selecting courses */}
           <div className="form-group">
             <label htmlFor="courseSelect">Select a Course:</label>
             <select
