@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
 import Header from "./Elements/Header";
 import Course from "./Pages/Course";
 import Home from "./Pages/Home";
@@ -8,6 +7,8 @@ import Journal from "./Pages/Journal";
 import { Routes, Route, useLocation, Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   const userId = useSelector((state) => state.userId);

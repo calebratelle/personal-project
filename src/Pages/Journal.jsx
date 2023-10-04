@@ -17,16 +17,21 @@ const JournalComponent = () => {
   }, []);
 
   return (
-  
-        <div>
+    <div className="container mt-5">
+      <div className="row">
+        <div className="col-md-12">
+          <h1 className="mb-4">Journal Entries</h1>
           {journalEntries.map((entry) => (
-            <div key={entry.id}>
-              <p>{entry.prompt.prompt}</p>
-              {entry.journalEntry}
+            <div className="card mb-3" key={entry.id}>
+              <div className="card-body">
+                <p className="card-text">{entry.prompt.prompt}</p>
+                <p className="card-text">{entry.journalEntry}</p>
+              </div>
             </div>
           ))}
         </div>
-      
+      </div>
+    </div>
   );
 };
 

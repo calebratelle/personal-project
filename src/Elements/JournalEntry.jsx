@@ -27,14 +27,22 @@ const JournalEntry = ({ prompt, getCourseContent }) => {
   };
 
   return (
-    <div>
-      <p>{prompt.prompt}</p>
-      <textarea
-        style={{ width: "90%", height: "80px" }}
-        value={userResponses}
-        onChange={handleResponseChange}
-      />
-      <button onClick={handleSubmit}>Save</button>
+    <div className="card mb-3">
+      <div className="card-body">
+        <p className="card-text">{prompt.prompt}</p>
+        <textarea
+          className="form-control mb-2"
+          style={{ width: "100%", height: "80px" }}
+          value={userResponses}
+          onChange={handleResponseChange}
+        />
+        <button
+          className="btn btn-primary"
+          onClick={handleSubmit}
+        >
+          Save
+        </button>
+      </div>
     </div>
   );
 };

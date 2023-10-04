@@ -39,48 +39,57 @@ const Course = () => {
   };
 
   return (
-    <div style={{ display: "flex", justifyContent: "flex-start" }}>
-      <div>
-        <p></p>
-        {courseContent.lessons &&
-          courseContent.lessons.map((lesson, index) => (
-            <button
-              key={lesson.id}
-              onClick={() => {
-                navigate(`/course/${id}/${index}`);
-                setCurrentLesson(lesson);
-                localStorage.setItem("route", `/course/${id}/${index}`);
-              }}
-            >
-              {lesson.lessonName}
-            </button>
-          ))}
-      </div>
-
-      {currentLesson.lessonName ? (
-        <div>
-          <h1>{currentLesson.lessonName}</h1>
-          {currentLesson.lesson_parts &&
-            currentLesson.lesson_parts.map((part, lessonPartId) => (
-              <div key={lessonPartId}>
-                <h2>{part.partTitle}</h2>
-                <div>
-                  {part.partContent && generateStyledText(part.partContent)}
-                </div>
-                {part.prompts &&
-                  part.prompts.map((prompt) => (
-                    <JournalEntry
-                      key={prompt.promptId}
-                      prompt={prompt}
-                      getCourseContent={getCourseContent}
-                    />
-                  ))}
-              </div>
-            ))}
+    <div className="container mt-5">
+      <div className="row">
+        <div className="col-md-3">
+          <div className="list-group">
+            <p className="list-group-item list-group-item-primary">Lessons</p>
+            {courseContent.lessons &&
+              courseContent.lessons.map((lesson, index) => (
+                <button
+                  key={lesson.id}
+                  className={`list-group-item list-group-item-action ${
+                    lesson.id === currentLesson.id ? "active" : ""
+                  }`}
+                  onClick={() => {
+                    navigate(`/course/${id}/${index}`);
+                    setCurrentLesson(lesson);
+                    localStorage.setItem("route", `/course/${id}/${index}`);
+                  }}
+                >
+                  {lesson.lessonName}
+                </button>
+              ))}
+          </div>
         </div>
-      ) : (
-        <p>Loading course content...</p>
-      )}
+
+        <div className="col-md-9">
+          {currentLesson.lessonName ? (
+            <div>
+              <h1>{currentLesson.lessonName}</h1>
+              {currentLesson.lesson_parts &&
+                currentLesson.lesson_parts.map((part, lessonPartId) => (
+                  <div key={lessonPartId}>
+                    <h2>{part.partTitle}</h2>
+                    <div>
+                      {part.partContent && generateStyledText(part.partContent)}
+                    </div>
+                    {part.prompts &&
+                      part.prompts.map((prompt) => (
+                        <JournalEntry
+                          key={prompt.promptId}
+                          prompt={prompt}
+                          getCourseContent={getCourseContent}
+                        />
+                      ))}
+                  </div>
+                ))}
+            </div>
+          ) : (
+            <p>Loading course content...</p>
+          )}
+        </div>
+      </div>
     </div>
   );
 };

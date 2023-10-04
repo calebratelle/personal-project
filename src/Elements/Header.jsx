@@ -27,17 +27,29 @@ const Header = ({ currentCourse }) => {
   return (
     <>
       {userId ? (
-        <nav>
-          <NavLink to="/home" style={navLinkStyle}>
-            All Courses
-          </NavLink>
-          <NavLink to={`/course/${currentCourse.id}/0`} style={navLinkStyle}>
-            {currentCourse.title}
-          </NavLink>
-          <NavLink to="/journal" style={navLinkStyle}>
-            Journal
-          </NavLink>
-          <button onClick={handleLogout}>Logout</button>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <div className="container">
+            <NavLink className="navbar-brand" to="/home">
+              All Courses
+            </NavLink>
+            <div className="collapse navbar-collapse">
+              <ul className="navbar-nav mr-auto">
+                <li className="nav-item">
+                  <NavLink className="nav-link" to={`/course/${currentCourse.id}/0`}>
+                    {currentCourse.title}
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/journal">
+                    Journal
+                  </NavLink>
+                </li>
+              </ul>
+            </div>
+            <button className="btn btn-outline-danger my-2 my-sm-0" onClick={handleLogout}>
+              Logout
+            </button>
+          </div>
         </nav>
       ) : null}
     </>
