@@ -1,4 +1,4 @@
-import { User, Journal, Prompt } from "../model.js";
+import { User, Journal, Prompt, LessonPart, Lesson, Course } from "../model.js";
 
 export default {
   postJournal: async (req, res) => {
@@ -49,7 +49,25 @@ export default {
         include: [
           {
             model: Prompt,
+            include: [
+              {
+                model: LessonPart,
+                include: [
+                  {
+                    model: Lesson,
+                    include: [
+                      {
+                        model: Course,
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
           },
+        ],
+        order: [
+          [Prompt, 'promptId', 'ASC']
         ],
       });
       res.status(200).json(journalData);

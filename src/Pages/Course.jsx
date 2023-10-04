@@ -51,6 +51,7 @@ const Course = () => {
                   className={`list-group-item list-group-item-action ${
                     lesson.id === currentLesson.id ? "active" : ""
                   }`}
+                  style={{ marginBottom: "5px" }} // Add margin here
                   onClick={() => {
                     navigate(`/course/${id}/${index}`);
                     setCurrentLesson(lesson);
