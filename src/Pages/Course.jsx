@@ -2,12 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import JournalEntry from "../Elements/JournalEntry";
+import { useSelector } from "react-redux";
 
 const Course = () => {
   const { id, lessonid } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
   const pathname = location.pathname;
+  const userId = useSelector((state) => state.userId);
+
 
   const [courseContent, setCourseContent] = useState({});
   const [currentLesson, setCurrentLesson] = useState({});
@@ -49,9 +52,11 @@ const Course = () => {
                 <button
                   key={lesson.id}
                   className={`btn btn-primary list-group-item list-group-item-action ${
-                    lesson.lessonId === currentLesson.lessonId ? "bg-secondary" : "active"
+                    lesson.lessonId === currentLesson.lessonId
+                      ? "bg-secondary"
+                      : "active"
                   }`}
-                  style={{ marginBottom: "5px"}}
+                  style={{ marginBottom: "5px" }}
                   onClick={() => {
                     navigate(`/course/${id}/${index}`);
                     setCurrentLesson(lesson);
@@ -76,13 +81,15 @@ const Course = () => {
                       {part.partContent && generateStyledText(part.partContent)}
                     </div>
                     {part.prompts &&
-                      part.prompts.map((prompt) => (
-                        <JournalEntry
+                      part.prompts.map((prompt) => {
+                        let journalEntryIndex = prompt.journals.findIndex( journal => userId===journal.userId)
+                        return <JournalEntry
                           key={prompt.promptId}
                           prompt={prompt}
+                          journalEntry={prompt.journals[journalEntryIndex]?.journalEntry}
                           getCourseContent={getCourseContent}
-                        />
-                      ))}
+                        />;
+                      })}
                   </div>
                 ))}
             </div>

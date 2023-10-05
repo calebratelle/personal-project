@@ -1,10 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
+
 const Home = ({ handleCourseSelection }) => {
   const selectCourse = (courseName) => {
     handleCourseSelection(courseName);
   };
+
 
   return (
     <div className="container">

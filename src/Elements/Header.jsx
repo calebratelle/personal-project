@@ -19,7 +19,8 @@ const Header = ({ currentCourse }) => {
   };
 
   const headerStyle = {
-    backgroundColor: "#e6e6e6",
+    backgroundColor: "#c4c4c4",
+    borderBottom: "2px solid #000000",
   };
 
   const handleLogout = () => {
@@ -31,9 +32,8 @@ const Header = ({ currentCourse }) => {
     <>
       {userId ? (
         <nav className="navbar navbar-expand-lg navbar-light sticky-top" style={headerStyle}>
-          <p></p>
           <div className="container">
-            <NavLink className="navbar-brand" to="/home">
+            <NavLink className="nav-link" to="/home">
               All Courses
             </NavLink>
             <div className="collapse navbar-collapse">

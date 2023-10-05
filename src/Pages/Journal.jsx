@@ -48,7 +48,6 @@ const JournalComponent = () => {
               <option value="1">Course I: The Foundation</option>
               <option value="2">Course II: Progression Principles</option>
               <option value="3">Course III: Trauma Resolution</option>
-              {/* Add more options for other courses */}
             </select>
           </div>
         </div>

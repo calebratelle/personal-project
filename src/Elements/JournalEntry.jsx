@@ -2,16 +2,15 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
-const JournalEntry = ({ prompt, getCourseContent }) => {
-  const [userResponses, setUserResponses] = useState(
-    prompt.journals[0] ? prompt.journals[0].journalEntry : ""
-  );
+const JournalEntry = ({ prompt, getCourseContent, journalEntry }) => {
   const userId = useSelector((state) => state.userId);
+
+  const [userResponses, setUserResponses] = useState( journalEntry ? journalEntry : "");
 
   const handleResponseChange = (e) => {
     setUserResponses(e.target.value);
   };
-
+console.log(prompt)
   const handleSubmit = () => {
     const promptId = prompt.promptId;
     axios
