@@ -11,7 +11,7 @@ const Header = ({ currentCourse }) => {
     axios
       .get("/api/user")
       .then((res) => dispatch({ type: "LOGIN", payload: res.data.userId }))
-      .catch((err) => console.log(err));
+      .catch((err) => console.error("Error fetching user data:", err));
   }, [dispatch]);
 
   const navLinkStyle = {
@@ -20,12 +20,23 @@ const Header = ({ currentCourse }) => {
 
   const headerStyle = {
     backgroundColor: "#c4c4c4",
-    borderBottom: "2px solid #000000",
+    borderBottom: "2px solid #ddd",
+    boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.1)",
+    padding: "15px 0",
+  };
+
+  const navLinkActiveStyle = {
+    color: "#ff3366",
   };
 
   const handleLogout = () => {
-    axios.delete("/api/logout").then((res) => dispatch({ type: "LOGOUT" }));
-    localStorage.removeItem("route");
+    axios
+      .delete("/api/logout")
+      .then(() => {
+        dispatch({ type: "LOGOUT" });
+        localStorage.removeItem("route");
+      })
+      .catch((err) => console.error("Error logging out:", err));
   };
 
   return (
@@ -33,19 +44,19 @@ const Header = ({ currentCourse }) => {
       {userId ? (
         <nav className="navbar navbar-expand-lg navbar-light sticky-top" style={headerStyle}>
           <div className="container">
-            <NavLink className="nav-link" to="/home">
-              All Courses
+            <NavLink className="navbar-brand" to="/home">
+              Courses
             </NavLink>
             <div className="collapse navbar-collapse">
-              <ul className="navbar-nav mr-auto">
+              <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
-                  <NavLink className="nav-link" to={`/course/${currentCourse.id}/0`}>
+                  <NavLink className="nav-link" to={`/course/${currentCourse.id}/0`} activeStyle={navLinkActiveStyle}>
                     {currentCourse.title}
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/journal">
-                    Journal
+                  <NavLink className="nav-link" to="/journal" activeStyle={navLinkActiveStyle}>
+                    Personal Journal
                   </NavLink>
                 </li>
               </ul>

@@ -11,7 +11,6 @@ const Course = () => {
   const pathname = location.pathname;
   const userId = useSelector((state) => state.userId);
 
-
   const [courseContent, setCourseContent] = useState({});
   const [currentLesson, setCurrentLesson] = useState({});
 
@@ -21,17 +20,14 @@ const Course = () => {
       .then((res) => {
         setCourseContent(res.data);
         setCurrentLesson(res.data.lessons[lessonid] || {});
-        console.log(res.data);
       })
       .catch((err) => {
         console.error(err);
       });
   };
 
-  console.log(currentLesson);
   useEffect(() => {
     getCourseContent();
-    console.log("HITTTTT", localStorage.route);
     id && lessonid && localStorage.setItem("route", pathname);
   }, [id]);
 
@@ -53,8 +49,8 @@ const Course = () => {
                   key={lesson.id}
                   className={`btn btn-primary list-group-item list-group-item-action ${
                     lesson.lessonId === currentLesson.lessonId
-                      ? "bg-secondary"
-                      : "active"
+                      ? "active"
+                      : "btn-info"
                   }`}
                   style={{ marginBottom: "5px" }}
                   onClick={() => {
@@ -82,13 +78,19 @@ const Course = () => {
                     </div>
                     {part.prompts &&
                       part.prompts.map((prompt) => {
-                        let journalEntryIndex = prompt.journals.findIndex( journal => userId===journal.userId)
-                        return <JournalEntry
-                          key={prompt.promptId}
-                          prompt={prompt}
-                          journalEntry={prompt.journals[journalEntryIndex]?.journalEntry}
-                          getCourseContent={getCourseContent}
-                        />;
+                        let journalEntryIndex = prompt.journals.findIndex(
+                          (journal) => userId === journal.userId
+                        );
+                        return (
+                          <JournalEntry
+                            key={prompt.promptId}
+                            prompt={prompt}
+                            journalEntry={
+                              prompt.journals[journalEntryIndex]?.journalEntry
+                            }
+                            getCourseContent={getCourseContent}
+                          />
+                        );
                       })}
                   </div>
                 ))}

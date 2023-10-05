@@ -25,7 +25,7 @@ const JournalComponent = () => {
     <div className="container mt-5">
       <div className="row">
         <div className="col-md-9">
-          <h1 className="mb-4">Journal Entries</h1>
+          <h1 className="mb-4">Personal Journal</h1>
           {journalEntries.filter((entry) => selectedCourse === "" || entry.prompt.lesson_part.lesson.course.courseId=== +selectedCourse).map((entry) => (
             <div className="card mb-3" key={entry.id}>
               <div className="card-body">
