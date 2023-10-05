@@ -19,10 +19,11 @@ const Header = ({ currentCourse }) => {
   };
 
   const headerStyle = {
-    backgroundColor: "#c4c4c4",
+    backgroundColor: "#cfe2ff",
     borderBottom: "2px solid #ddd",
     boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.1)",
     padding: "15px 0",
+    color: "#f5f5f5",
   };
 
   const navLinkActiveStyle = {
@@ -61,7 +62,7 @@ const Header = ({ currentCourse }) => {
                 </li>
               </ul>
             </div>
-            <button className="btn btn-outline-danger my-2 my-sm-0" onClick={handleLogout}>
+            <button className="btn btn-outline-secondary my-2 my-sm-0" onClick={handleLogout}>
               Logout
             </button>
           </div>
